@@ -1,0 +1,848 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Laravel Basic API",
+        "description": "L5 Swagger API with Laravel basic",
+        "contact": {
+            "email": "nguyen.an.thoi.212@gmail.com"
+        },
+        "version": "1.0.0"
+    },
+    "host": "localhost/laravel_basic/an.thoi.laravel/public",
+    "basePath": "/api",
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "paths": {
+        "/auth/register": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Create a new user",
+                "description": "",
+                "operationId": "register",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Create a user",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "email": {
+                                    "type": "string",
+                                    "default": "admin_123@gmail.com"
+                                },
+                                "phone": {
+                                    "type": "string",
+                                    "default": "84 123456789"
+                                },
+                                "password": {
+                                    "type": "string",
+                                    "default": "123456"
+                                },
+                                "name": {
+                                    "type": "string",
+                                    "default": "admin 123"
+                                },
+                                "gender": {
+                                    "type": "boolean",
+                                    "default": false
+                                },
+                                "dateOfBirth": {
+                                    "type": "string",
+                                    "default": "10/10/2010"
+                                },
+                                "about": {
+                                    "type": "string",
+                                    "default": "T la admin"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Register Successfully"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/auth/login": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Login",
+                "description": "",
+                "operationId": "Login",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "user login",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "emailOrPhone": {
+                                    "type": "string",
+                                    "default": "admin_123@gmail.com"
+                                },
+                                "password": {
+                                    "type": "string",
+                                    "default": "123456"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Login Successfully"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/auth/request-reset-password": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Request Reset Password",
+                "description": "Email Request Reset Password",
+                "operationId": "ResetPassword",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "email": {
+                                    "type": "string",
+                                    "default": "admin_123@gmail.com"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request Reset Password Successfully"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/auth/accept-reset-password": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Accept Reset Password",
+                "description": "Accept Token Reset Password",
+                "operationId": "postTokenResetPassword",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "input password to reset",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "token": {
+                                    "type": "string",
+                                    "default": "123456"
+                                },
+                                "password": {
+                                    "type": "string",
+                                    "default": "123456"
+                                },
+                                "confirmPassword": {
+                                    "type": "string",
+                                    "default": "123456"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Reset Password Successfully"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/change-password": {
+            "put": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Change Password",
+                "description": "",
+                "operationId": "ChangePassword",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "currentPassword": {
+                                    "type": "string",
+                                    "default": "123456789"
+                                },
+                                "newPassword": {
+                                    "type": "string",
+                                    "default": "123456"
+                                },
+                                "confirmNewPassword": {
+                                    "type": "string",
+                                    "default": "123456"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Change Password Successfully"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                },
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ]
+            }
+        },
+        "/friend/{friend_id}/request-add-friend": {
+            "post": {
+                "tags": [
+                    "Friends"
+                ],
+                "summary": "Request Add Friend",
+                "description": "Request Add Friend",
+                "operationId": "requestAddFriend",
+                "parameters": [
+                    {
+                        "name": "friend_id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request Add Friend successfully"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                },
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ]
+            }
+        },
+        "/friend/list-add-friend/{friend_request_id}": {
+            "post": {
+                "tags": [
+                    "Friends"
+                ],
+                "summary": "Accept Add Friend",
+                "description": "Accept Add Friend",
+                "operationId": "acceptAddFriend",
+                "parameters": [
+                    {
+                        "name": "friend_request_id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Accept Add Friend successfully"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                },
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ]
+            }
+        },
+        "/friend/list-add-friend": {
+            "get": {
+                "tags": [
+                    "Friends"
+                ],
+                "summary": "Get List Request Add Friend",
+                "description": "Get List Request Add Friend",
+                "operationId": "GetListAddFriend",
+                "responses": {
+                    "200": {
+                        "description": "Get List Add Friend Successfully"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                },
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ]
+            }
+        },
+        "/friend/list-friend": {
+            "get": {
+                "tags": [
+                    "Friends"
+                ],
+                "summary": "Get List Friend",
+                "description": "Get List Friend",
+                "operationId": "GetListFriend",
+                "responses": {
+                    "200": {
+                        "description": "Get List Friend Successfully"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                },
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ]
+            }
+        },
+        "/friend/{friend_list_id}/friend-profile": {
+            "get": {
+                "tags": [
+                    "Friends"
+                ],
+                "summary": "Get Friend Profile",
+                "description": "Get Friend Profile",
+                "operationId": "GetFriendProfile",
+                "parameters": [
+                    {
+                        "name": "friend_list_id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get Friend Profile Successfully"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                },
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ]
+            }
+        },
+        "/status": {
+            "get": {
+                "tags": [
+                    "Posts"
+                ],
+                "summary": "Get List Status",
+                "description": "Get List Status",
+                "operationId": "GetListStatus",
+                "responses": {
+                    "200": {
+                        "description": "Get List Status Successfully"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                },
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Posts"
+                ],
+                "summary": "Add status",
+                "description": "Add status",
+                "operationId": "addStatus",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Add status",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "title": {
+                                    "type": "string",
+                                    "default": "Hello Everyone"
+                                },
+                                "content": {
+                                    "type": "string",
+                                    "default": "I am admin ahihihi...."
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Edit profile successfully"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                },
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ]
+            }
+        },
+        "/status/{id}": {
+            "get": {
+                "tags": [
+                    "Posts"
+                ],
+                "summary": "Get Status By Id",
+                "description": "Get Status By Id",
+                "operationId": "GetStatus",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get status Successfully"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                },
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Posts"
+                ],
+                "summary": "Edit Status By Id",
+                "description": "Edit Status By Id",
+                "operationId": "EditStatus",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "edit status",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "title": {
+                                    "type": "string",
+                                    "default": "Ahihi..."
+                                },
+                                "content": {
+                                    "type": "string",
+                                    "default": "Still ahihihi...."
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Edit status Successfully"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                },
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Posts"
+                ],
+                "summary": "Delete Status By Id",
+                "description": "Delete Status By Id",
+                "operationId": "DeleteStatus",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Edit status Successfully"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                },
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ]
+            }
+        },
+        "/friend/{friend_list_id}/status": {
+            "get": {
+                "tags": [
+                    "Posts"
+                ],
+                "summary": "Get Friend Status",
+                "description": "Get Friend Status",
+                "operationId": "GetFriendStatus",
+                "parameters": [
+                    {
+                        "name": "friend_list_id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get Friend Status Successfully"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                },
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ]
+            }
+        },
+        "/friend/{friend_list_id}/status/{status_id}": {
+            "get": {
+                "tags": [
+                    "Posts"
+                ],
+                "summary": "Get Friend Status By Id",
+                "description": "Get Friend Status By Id",
+                "operationId": "GetFriendStatusById",
+                "parameters": [
+                    {
+                        "name": "friend_list_id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "status_id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get Friend Status By Id Successfully"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                },
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ]
+            }
+        },
+        "/new-feed": {
+            "get": {
+                "tags": [
+                    "Posts"
+                ],
+                "summary": "Get New Feed",
+                "description": "Get New Feed",
+                "operationId": "GetNewFeed",
+                "responses": {
+                    "200": {
+                        "description": "Get New Feed Successfully"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                },
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ]
+            }
+        },
+        "/user": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Get Profile User",
+                "description": "Get Profile User",
+                "operationId": "GetProfileUser",
+                "responses": {
+                    "200": {
+                        "description": "Get profile Successfully"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                },
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ]
+            }
+        },
+        "/edit-profile": {
+            "put": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Edit Profile User",
+                "description": "Edit Profile User",
+                "operationId": "putEditProfile",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Edit profile user",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "name": {
+                                    "type": "string",
+                                    "default": "admin 123"
+                                },
+                                "gender": {
+                                    "type": "boolean",
+                                    "default": false
+                                },
+                                "dateOfBirth": {
+                                    "type": "string",
+                                    "default": "10/10/2010"
+                                },
+                                "about": {
+                                    "type": "string",
+                                    "default": "T la admin"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Edit profile successfully"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                },
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ]
+            }
+        }
+    },
+    "definitions": {},
+    "securityDefinitions": {
+        "jwt": {
+            "type": "apiKey",
+            "description": "A short description for security scheme",
+            "name": "Authorization",
+            "in": "header"
+        }
+    }
+}
